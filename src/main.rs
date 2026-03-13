@@ -1,5 +1,6 @@
 use rand::prelude::*;
-
+use std::fmt;
+use yansi::Paint;
 #[derive(Debug, Copy, Clone)]
 enum Kind {
     Ace,
@@ -31,6 +32,22 @@ struct Card {
     kind: Kind,
 }
 
+impl fmt::Display for Kind {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{:?}", self)
+    }
+}
+impl fmt::Display for Color {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{:?}", self)
+    }
+}
+impl fmt::Display for Card {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "Card: {} of {}", self.kind, self.color)
+    }
+}
+
 fn main() {
     let mut rng = rand::thread_rng();
     let colors = [Color::Diamonds, Color::Hearts, Color::Spades, Color::Clubs];
@@ -59,16 +76,10 @@ fn main() {
 
     deck.shuffle(&mut rng);
 
-    // println!("{:?}", deck); //chyba dobrze pomieszane
-    println!("{:?}", deck.len());
+    // for i in 0..=51 {
+    //     let card = &deck[i];
+    //     println!("{}, place in deck: {}", card, i + 1);
+    // }
 
-    if let Some(random_card) = deck.choose(&mut rng) {
-        println!("{:?}", random_card);
-    }
-
-    for i in 0..=51 {
-        let card = &deck[i];
-        println!("{:?}", card); //cały deck w osobnych linijkach
-        println!("{}", i + 1); //numer iteracjii
-    }
+    println!("Third card in deck: {}", &deck[3]);
 }
