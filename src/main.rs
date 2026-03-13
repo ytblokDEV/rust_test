@@ -39,7 +39,12 @@ impl fmt::Display for Kind {
 }
 impl fmt::Display for Color {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{:?}", self)
+        match self {
+            Color::Diamonds => write!(f, "{}", "Diamonds ♦".red().bold()),
+            Color::Hearts => write!(f, "{}", "Hearts ♥".red().bold()),
+            Color::Spades => write!(f, "{}", "Spades ♠".bright_black().bold()),
+            Color::Clubs => write!(f, "{}", "Clubs ♣".bright_black().bold()),
+        }
     }
 }
 impl fmt::Display for Card {
@@ -76,10 +81,8 @@ fn main() {
 
     deck.shuffle(&mut rng);
 
-    // for i in 0..=51 {
-    //     let card = &deck[i];
-    //     println!("{}, place in deck: {}", card, i + 1);
-    // }
-
-    println!("Third card in deck: {}", &deck[3]);
+    for i in 0..=51 {
+        let card = &deck[i];
+        println!("{}, place in deck: {}", card, i + 1);
+    }
 }
