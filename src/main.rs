@@ -59,7 +59,7 @@ fn main() {
 
     deck.shuffle(&mut rng);
 
-    // println!("{:?}", deck); chyba dobrze pomieszane
+    // println!("{:?}", deck); //chyba dobrze pomieszane
     println!("{:?}", deck.len());
 
     if let Some(random_card) = deck.choose(&mut rng) {
@@ -68,8 +68,7 @@ fn main() {
 
     for i in 0..=51 {
         let card = &deck[i];
-        println!("{:?}", card);
-        println!("{}", i + 1);
-    } //numer iteracjii
-    //cały deck w osobnych linijkach
+        println!("{:?}", card); //cały deck w osobnych linijkach
+        println!("{}", i + 1); //numer iteracjii
+    }
 }
